@@ -17,5 +17,5 @@ def indexComparison(ticker):
     return index1_comparison,index2_comparison
 
 
-indexComparison('msft')
+
 
