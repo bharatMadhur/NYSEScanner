@@ -12,8 +12,3 @@ def yoyprofitgrowth(ticker):
     return df.iloc[0]['close'] - df.iloc[-1]['close']
 
 
-
-
-
-
-yoyprofitgrowth('msft')

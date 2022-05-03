@@ -70,8 +70,7 @@ def aboutTheCompany(ticker):
     requestResponse = requests.get(
         "https://api.tiingo.com/tiingo/daily/" + ticker + "?token=2f7e85db1869a38072f3348bdae03512c8438e30",
         headers=headers)
-    print(requestResponse.json())
-    pass
+    return requestResponse.json()
 
 
 # NEWS API CONNECTION
@@ -82,7 +81,7 @@ def newsOfTheStock():
     }
     requestResponse = requests.get("https://api.tiingo.com/tiingo/news?token=2f7e85db1869a38072f3348bdae03512c8438e30",
                                    headers=headers)
-    print(requestResponse.json())
+    return requestResponse.json()
 
 
 def print_hi(name):
@@ -98,15 +97,15 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
 
-def forex(currencypair):
+def forex():
     import requests
     headers = {
         'Content-Type': 'application/json'
     }
     requestResponse = requests.get(
-        "https://api.tiingo.com/tiingo/fx/top?tickers=audusd,eurusd&token=2f7e85db1869a38072f3348bdae03512c8438e30",
+        "https://api.tiingo.com/tiingo/fx/top?tickers=usdinr&token=2f7e85db1869a38072f3348bdae03512c8438e30",
         headers=headers)
-    print(requestResponse.json())
+    return requestResponse.json()
 
 
 def currentPrice():
@@ -121,21 +120,21 @@ def currentPrice():
 
 # MOST IMPORTANT FUNCTION FOR MY DATA ANALYSIS
 def intradayChartingPrices(startDate, ticker, freq):
-    startDate = "2022-04-26"
+    startDate = "2022-03-26"
     freq = "1hour"
-    ticker = "aapl,spy"
+    ticker = ticker
     headers = {
         'Content-Type': 'application/json'
     }
     requestResponse = requests.get(
-        "https://api.tiingo.com/iex/" + ticker + "/prices?startDate=" + startDate + "&resampleFreq=" + freq + "&columns=open,high,low,close,volume&token=2f7e85db1869a38072f3348bdae03512c8438e30",
+        "https://api.tiingo.com/iex/" + str(ticker) + "/prices?startDate=" + startDate + "&resampleFreq=" + freq + "&columns=open,high,low,close,volume&token=2f7e85db1869a38072f3348bdae03512c8438e30",
         headers=headers)
-    # print(requestResponse.json())
+    print(requestResponse.json())
     return requestResponse.json()
 
 
-def fundamentalsDow30():
-    ticker = "msft"
+def fundamentalsDow30(ticker):
+    #ticker = "msft"
     try:
         headers = {
             'Content-Type': 'application/json'
@@ -150,42 +149,19 @@ def fundamentalsDow30():
         return False
 
 
-def fundamentalDow30():
-    ticker = "msft"
+def fundamentalDow30(ticker):
     try:
         headers = {
             'Content-Type': 'application/json'
         }
 
         requestResponse = requests.get(
-            "https://api.tiingo.com/tiingo/fundamentals/aapl/daily?startDate=2022-04-29&token"
+            "https://api.tiingo.com/tiingo/fundamentals/"+ticker+"/daily?startDate=2022-04-29&token"
             "=2f7e85db1869a38072f3348bdae03512c8438e30",
             headers=headers)
         return requestResponse.json()
     except:
         return False
 
-    # Revenue per share ‘rps’
-    # Return on asset ‘roa’
-    # ‘assetTurnover’
-    # ‘bookVal’
-    # ‘bvps’ — > Book Value per each share
-    # 'revenue'
-    # 'netinc''Revenue QoQ Growth''Debt to Equity Ratio''roe'
+intradayChartingPrices(1,2,3)
 
-    # headers = {
-    #    'Content-Type': 'application/json'
-    # }
-    # requestResponse = requests.get(
-    #    "https://api.tiingo.com/tiingo/fundamentals/definitions?token=2f7e85db1869a38072f3348bdae03512c8438e30",
-    #    headers=headers)
-    # print(requestResponse.json())
-
-# intradayChartingPrices(1, 2, 3)
-# newsOfTheStock()
-# aboutTheCompany('goog')
-# Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -4,10 +4,10 @@ import pandas as pd
 
 
 def peAnalysis(ticker):
-    incoming_d = fundamentalDow30()
+    incoming_d = fundamentalDow30(ticker)
     df = pd.DataFrame(incoming_d)
     if df.iloc[0]['peRatio'] > 0:
-        return "The Company is Profitable", df.iloc[0]['peRatio']
+        return df.iloc[0]['peRatio']
 
 
-print(peAnalysis(1))
+

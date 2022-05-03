@@ -6,7 +6,7 @@ import pandas as pd
 
 def pivot_level(ticker):
     timeFrame = 7  # Remove afterwards
-    incoming_d = intradayChartingPrices(1, 2, 3)
+    incoming_d = intradayChartingPrices(1, ticker, 3)
     df = pd.DataFrame(incoming_d)
 
     # pivot_point=0 'high', 'low','close'
@@ -20,6 +20,8 @@ def pivot_level(ticker):
     resistance_r3 = df['high'].tail(1) + (2 * (pivot_point - df['low'].tail(1)))
     support_s3 = df['low'].tail(1) - (2 * (df['high'].tail(1) - pivot_point))
 
+    return resistance_r1.iat[0], resistance_r2.iat[0], resistance_r3.iat[0], support_s1.iat[0], support_s2.iat[0], \
+           support_s3.iat[0]
 
 
-pivot_level(1)
+pivot_level("aapl")
